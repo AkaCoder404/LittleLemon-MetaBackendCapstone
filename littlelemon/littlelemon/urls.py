@@ -23,10 +23,18 @@ from restaurant import views
 router = DefaultRouter()
 router.register(r'tables', views.BookingViewSet, basename='tables')
 
+from littlelemonapi import views as api_views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('restaurant/', include('restaurant.urls')),
     path('restaurant/menu/', include('restaurant.urls')),
     path('restaurant/booking/', include(router.urls)),
+    
+    path('api/', include('littlelemonapi.urls')),
+    
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken'))
 ]
 
